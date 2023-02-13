@@ -1,0 +1,35 @@
+
+<.header>
+<.link patch={~p"/renters/new_renter"}>
+      <.button>New Renter</.button>
+    </.link>
+
+</.header>
+
+<.table id="renters" rows={@renters} row_click={&JS.navigate(~p"/renters/#{&1}")}>
+ <:col :let={renter} label="Name"><%= renter.first_name %></:col>
+
+<:action :let={renter}>
+ <div class="sr-only">
+      <.link navigate={~p"/renters/#{renter}"}>Show</.link>
+    </div>
+</:action>
+
+</.table>
+
+
+<.modal
+  :if={@live_action in [:new_renter]}
+  id="renter-modal"
+  show
+  on_cancel={JS.navigate(~p"/renters")}
+>
+  <.live_component
+    module={RentalWeb.RenterLive.RenterFromComponent}
+    id={:new_renters}
+    title={@page_title}
+    action={@live_action}
+    renter={@renter}
+    navigate={~p"/renters"}
+  />
+</.modal>
