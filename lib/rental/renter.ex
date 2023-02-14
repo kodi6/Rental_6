@@ -37,9 +37,6 @@ defmodule Rental.Renter do
   def changeset(renter, attrs) do
     renter
     |> cast(attrs, [:first_name, :surname, :gender, :nationality, :personal_contact, :emergency_contact, :label, :stay, :dob, :is_trash])
-
-
-
   end
 
 

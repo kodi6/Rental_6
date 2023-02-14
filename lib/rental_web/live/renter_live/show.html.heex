@@ -1,0 +1,45 @@
+
+
+
+
+
+ <.link patch={~p"/renters/#{@renter}/add_id"}>
+      <.button>ADD ID</.button>
+    </.link>
+
+
+
+
+
+
+
+<%= if @renter.renter_id_proof do%>
+<.list>
+<:item title="Aadhaar"><%= @renter.renter_id_proof.aadhaar_number %></:item>
+</.list>
+<% end %>
+
+
+
+
+
+
+
+
+
+<.modal
+  :if={@live_action in [:new_id]}
+  id="id-modal"
+  show
+  on_cancel={JS.navigate(~p"/renters/#{@renter}")}
+>
+  <.live_component
+    module={RentalWeb.RenterLive.IdFromComponent}
+    id={:new_id}
+    title={@page_title}
+    action={@live_action}
+    renter={@renter}
+    renter_id_proof={@renter_id_proof}
+    navigate={~p"/renters/#{@renter}"}
+  />
+</.modal>
