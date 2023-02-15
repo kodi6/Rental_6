@@ -4,9 +4,12 @@ defmodule Rental.Business.Rental do
   alias Rental.{
   Repo,
   Renter,
-  RenterIDProof
+  RenterIDProof,
+  BikeDetails
   }
 
+
+  #Renter
   def get_renter_list() do
     Repo.all(Renter)
   end
@@ -15,13 +18,24 @@ defmodule Rental.Business.Rental do
     Renter.changeset(renter, attrs)
   end
 
-  def change_renter_id_proof(%RenterIDProof{} = renter_id_proof, attrs \\ %{}) do
-    RenterIDProof.changeset(renter_id_proof, attrs)
-  end
 
   def get_renter(id) do
     Repo.get(Renter, id)
   end
+
+  def create_renter(attrs \\ %{}) do
+    IO.inspect(attrs, label: "attrs")
+    %Renter{}
+    |> Renter.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def update_renter(%Renter{} = renter, attrs) do
+    renter
+    |> Renter.changeset(attrs)
+    |> Repo.update()
+  end
+
 
   def get_idproofs_by_id(renter_id) do
     Repo.get(Renter, renter_id)
@@ -33,12 +47,11 @@ defmodule Rental.Business.Rental do
     ])
   end
 
-  def create_renter(attrs \\ %{}) do
-    IO.inspect(attrs, label: "attrs")
-    %Renter{}
-    |> Renter.changeset(attrs)
-    |> Repo.insert()
+  #renter_id_proof
+  def change_renter_id_proof(%RenterIDProof{} = renter_id_proof, attrs \\ %{}) do
+    RenterIDProof.changeset(renter_id_proof, attrs)
   end
+
 
   def create_renter_id_proof(attrs \\ %{}) do
     %RenterIDProof{}
@@ -46,11 +59,7 @@ defmodule Rental.Business.Rental do
     |> Repo.insert()
   end
 
-  def update_renter(%Renter{} = renter, attrs) do
-    renter
-    |> Renter.changeset(attrs)
-    |> Repo.update()
-  end
+
 
   def update_renter_id_proof(%RenterIDProof{} = renter_id_proof, attrs) do
     renter_id_proof
@@ -61,10 +70,18 @@ defmodule Rental.Business.Rental do
 
 
 
-  def get_ids_by_renter_id(renter_id) do
+  # def get_ids_by_renter_id(renter_id) do
 
-    query  = from a in RenterIDProof, where: a.renter_id == ^renter_id
-    Repo.one(query)
-  end
+  #   query  = from a in RenterIDProof, where: a.renter_id == ^renter_id
+  #   Repo.one(query)
+  # end
+
+
+#renter_id_proof
+
+def change_bike_details(%BikeDetails{} = bike_details, attrs \\ %{}) do
+  RenterIDProof.changeset(bike_details, attrs)
+end
+
 
 end

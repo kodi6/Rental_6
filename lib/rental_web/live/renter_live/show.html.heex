@@ -1,31 +1,31 @@
-
-
-
-
-
- <.link patch={~p"/renters/#{@renter}/add_id"}>
-      <.button>ADD ID</.button>
+<.link patch={~p"/renters/#{@renter}/add_id"}>
+      <.button>Add ID</.button>
     </.link>
 
 
 
 
+<%= if @renter.renter_id_proof do %>
 
 
+Renter Information
 
-<%= if @renter.renter_id_proof do%>
 <.list>
-<:item title="Aadhaar"><%= @renter.renter_id_proof.aadhaar_number %></:item>
+<:item title="First name"><%= @renter.first_name %></:item>
+<:item title="Surname"><%= @renter.surname %></:item>
+<:item title="Gender"><%= @renter.gender %></:item>
+<:item title="Dob"><%= @renter.dob %></:item>
+<:item title="Nationality"><%= @renter.nationality %></:item>
+<:item title="Stay"><%= @renter.stay %></:item>
+<:item title="Personal contact"><%= @renter.personal_contact %></:item>
+<:item title="Emergency contact"><%= @renter.emergency_contact %></:item>
+<:item title=""><strong><%= @renter.renter_id_proof.label%>:</strong> <%= @renter.renter_id_proof.number%></:item>
 </.list>
 <% end %>
 
-
-
-
-
-
-
-
+<.link patch={~p"/renters/#{@renter}/add_trip"}>
+      <.button>Add Trip</.button>
+    </.link>
 
 <.modal
   :if={@live_action in [:new_id]}

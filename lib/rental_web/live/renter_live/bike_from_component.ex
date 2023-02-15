@@ -1,4 +1,4 @@
-defmodule RentalWeb.RenterLive.RenterFromComponent do
+defmodule RentalWeb.RenterLive.BikeFromComponent do
   use RentalWeb, :live_component
 
 

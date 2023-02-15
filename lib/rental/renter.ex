@@ -24,7 +24,6 @@ defmodule Rental.Renter do
     field :stay, :string
     field :surname, :string
 
-    # embeds_one :renter_id_proof, RenterIDProof
     has_one :renter_id_proof, RenterIDProof, foreign_key: :renter_id
     has_many :rental_status, RentalStatus, foreign_key: :renter_id
     has_many :bike_details, Rental.BikeDetails, foreign_key: :renter_id

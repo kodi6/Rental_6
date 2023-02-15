@@ -23,7 +23,9 @@ alias Rental.Business.Rental
         phx-change="validate"
         phx-submit="save"
       >
-        <.input field={{f, :aadhaar_number}} type="text" label="First Name" />
+        <.input field={{f, :label}} type="select" prompt="select ID" label="First Name" options={["Passport Number": "Passport Number", "Visa Number": "Visa Number", "OCI Number": "OCI Number", "Aadhaar Number": "Aadhaar Number", "Driving license Number": "Driving license Number", "Voter ID Number": "Voter ID Number", "PAN": "PAN"]}/>
+        <.input field={{f, :number}} type="text" label="Number" />
+
 
         <:actions>
           <.button phx-disable-with="Saving...">Save User</.button>
@@ -36,7 +38,6 @@ alias Rental.Business.Rental
 
   @impl true
   def update(%{renter_id_proof: renter_id_proof} = assigns, socket) do
-    IO.inspect(renter_id_proof)
     changeset = Rental.change_renter_id_proof(renter_id_proof)
 
     {:ok,
@@ -74,6 +75,8 @@ alias Rental.Business.Rental
 
   defp save_renter_id_proof(socket, :new_id, renter_id_proof_params) do
     renter_id_proof_params = Map.put(renter_id_proof_params, "renter_id", socket.assigns.renter.id)
+    IO.inspect(renter_id_proof_params, label: "renter_id_proof_params")
+
     case Rental.create_renter_id_proof(renter_id_proof_params) do
       {:ok, _renter_id_proof} ->
         {:noreply,
