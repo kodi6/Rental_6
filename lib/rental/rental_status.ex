@@ -20,8 +20,10 @@ defmodule Rental.RentalStatus do
 
   @doc false
   def changeset(rental_status, attrs) do
+
+
     rental_status
-    |> cast(attrs, [:trip_no, :start_date, :estimated_end_date, :returned_date, :pickup_time, :drop_time, :is_trash])
-    |> validate_required([:trip_no, :start_date, :estimated_end_date, :returned_date, :pickup_time, :drop_time, :is_trash])
+    |> cast(attrs, [:trip_no, :start_date, :estimated_end_date, :returned_date, :pickup_time, :drop_time, :is_trash, :renter_id])
+    |> validate_required([:trip_no, :start_date, :estimated_end_date, :returned_date, :pickup_time, :drop_time, :is_trash, :renter_id])
   end
 end

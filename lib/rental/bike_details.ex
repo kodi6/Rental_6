@@ -18,7 +18,7 @@ defmodule Rental.BikeDetails do
   @doc false
   def changeset(bike_details, attrs) do
     bike_details
-    |> cast(attrs, [:type, :bike_number, :bike_model, :is_trash])
-    |> validate_required([:type, :bike_number, :bike_model, :is_trash])
+    |> cast(attrs, [:type, :bike_number, :bike_model, :is_trash, :renter_id ])
+    |> validate_required([:type, :bike_number, :bike_model, :is_trash, :renter_id ])
   end
 end

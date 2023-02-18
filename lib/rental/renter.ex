@@ -5,7 +5,8 @@ defmodule Rental.Renter do
   alias Rental.{
   RenterIDProof,
   RentalStatus,
-  PaymentDetails
+  PaymentDetails,
+  RenterForm
 }
 
 
@@ -28,6 +29,7 @@ defmodule Rental.Renter do
     has_many :rental_status, RentalStatus, foreign_key: :renter_id
     has_many :bike_details, Rental.BikeDetails, foreign_key: :renter_id
     has_many :payment_details, PaymentDetails, foreign_key: :renter_id
+
 
     timestamps()
   end

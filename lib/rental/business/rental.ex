@@ -5,7 +5,10 @@ defmodule Rental.Business.Rental do
   Repo,
   Renter,
   RenterIDProof,
-  BikeDetails
+  BikeDetails,
+  RenterForm,
+  RentalStatus,
+  PaymentDetails
   }
 
 
@@ -43,7 +46,7 @@ defmodule Rental.Business.Rental do
       :renter_id_proof,
       :rental_status,
       :bike_details,
-      :payment_details
+      :payment_details,
     ])
   end
 
@@ -80,7 +83,42 @@ defmodule Rental.Business.Rental do
 #renter_id_proof
 
 def change_bike_details(%BikeDetails{} = bike_details, attrs \\ %{}) do
-  RenterIDProof.changeset(bike_details, attrs)
+  BikeDetails.changeset(bike_details, attrs)
+end
+
+def create_bike_details(attrs \\ %{}) do
+  %BikeDetails{}
+  |> BikeDetails.changeset(attrs)
+  |> Repo.insert()
+end
+
+def update_bike_details(%BikeDetails{} = bike_details, attrs) do
+  bike_details
+  |> BikeDetails.changeset(attrs)
+  |> Repo.update()
+end
+
+#renter_form
+def change_renter_form(%RenterForm{} = renter_form, attrs \\ %{}) do
+  RenterForm.changeset(renter_form, attrs)
+end
+
+
+def create_renter_form(attrs \\ %{}) do
+
+  # attrs = Map.put(attrs, "renter_id", renter.id)
+
+
+  %PaymentDetails{}
+  |> PaymentDetails.changeset(attrs)
+  |> Repo.insert()
+
+  %RentalStatus{}
+  |> RentalStatus.changeset(attrs)
+  |> Repo.insert()
+
+
+
 end
 
 

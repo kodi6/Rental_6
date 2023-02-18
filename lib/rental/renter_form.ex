@@ -4,45 +4,28 @@ defmodule Rental.RenterForm do
 
 
   embedded_schema do
-    field :dob, :date
-    field :emergency_contact, :string
-    field :first_name, :string
-    field :gender, :string
-    field :is_trash, :boolean, default: false
-    field :label, :string
-    field :nationality, :string
-    field :personal_contact, :string
-    field :stay, :string
-    field :surname, :string
-    field :aadhaar_number, :string
-    field :dl_number, :string
-    field :oci_number, :string
-    field :pan_number, :string
-    field :passport_number, :string
-    field :visa_number, :string
-    field :voterid_number, :string
     field :renter_id, :binary_id
+    field :drop_time, :time
+    field :estimated_end_date, :date
+    field :is_trash, :boolean, default: false
+    field :pickup_time, :time
+    field :returned_date, :date
+    field :start_date, :date
+    field :trip_no, :string
+
+    field :amount_paid, :string
+    field :date, :date
+    field :paid, :string
+    field :payment_mode, :string
+    field :pending_amount, :string
+    field :time, :time
+    field :total_amount, :string
+
   end
 
   def changeset(renter_form, attrs) do
     renter_form
-    |> cast(attrs, [:dob,
-    :emergency_contact,
-    :first_name,
-    :gender,
-    :is_trash,
-    :label,
-    :nationality,
-    :personal_contact,
-    :stay,
-    :surname,
-    :aadhaar_number,
-    :dl_number,
-    :oci_number,
-    :pan_number,
-    :passport_number,
-    :visa_number,
-    :voterid_number])
+    |> cast(attrs, [:trip_no, :renter_id])
 
   end
 

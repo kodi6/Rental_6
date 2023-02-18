@@ -22,7 +22,7 @@ defmodule Rental.PaymentDetails do
   @doc false
   def changeset(payment_details, attrs) do
     payment_details
-    |> cast(attrs, [:total_amount, :amount_paid, :pending_amount, :paid, :payment_mode, :date, :time, :is_trash])
-    |> validate_required([:total_amount, :amount_paid, :pending_amount, :paid, :payment_mode, :date, :time, :is_trash])
+    |> cast(attrs, [:total_amount, :amount_paid, :pending_amount, :paid, :payment_mode, :date, :time, :is_trash, :renter_id])
+    |> validate_required([:total_amount, :amount_paid, :pending_amount, :paid, :payment_mode, :date, :time, :is_trash, :renter_id])
   end
 end

@@ -28,9 +28,9 @@ defmodule RentalWeb.Router do
     live "/renters/:id", RenterLive.Show, :show
     live "/renters/:id/add_id", RenterLive.Show, :new_id
     live "/renters/:id/add_bike_details",RenterLive.Show, :add_bike
+    live "/renters/:id/add_trip",RenterLive.Show, :add_trip
 
-    # live "/renters/:id/add_trip", RenterLive.Trip, :add_trip
-    # live "/renters/:id/add_bike_details", RenterLive.Trip, :add_bike
+
 
   end
 

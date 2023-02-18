@@ -75,8 +75,6 @@ alias Rental.Business.Rental
 
   defp save_renter_id_proof(socket, :new_id, renter_id_proof_params) do
     renter_id_proof_params = Map.put(renter_id_proof_params, "renter_id", socket.assigns.renter.id)
-    IO.inspect(renter_id_proof_params, label: "renter_id_proof_params")
-
     case Rental.create_renter_id_proof(renter_id_proof_params) do
       {:ok, _renter_id_proof} ->
         {:noreply,
